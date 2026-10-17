@@ -82,6 +82,8 @@ export function CampaignCard({
   showSupporters = true,
   style,
 }) {
+
+  if (!c) return null;
   const cat = catStyle(c.category);
   const pct = Math.max(0, Math.min(100, Number(c.percent) || 0));
 

@@ -503,9 +503,27 @@ export function emptyDraft(actorId, now = Date.now()) {
   };
 }
 
+function sameDraftValue(a, b) {
+  if (Array.isArray(a) && Array.isArray(b)) {
+    return a.length === b.length && a.every((value, index) => value === b[index]);
+  }
+  return a === b;
+}
+
 export function upsertDraft(state, draft, now = Date.now()) {
+  const existing = state.drafts[draft.id];
+  const nextDraft = { ...existing, ...draft };
+  if (
+    existing &&
+    Object.keys(nextDraft).every(
+      (key) => key === 'updatedAt' || sameDraftValue(existing[key], nextDraft[key])
+    )
+  ) {
+    return state;
+  }
+
   const drafts = clone(state.drafts);
-  drafts[draft.id] = { ...drafts[draft.id], ...draft, updatedAt: now };
+  drafts[draft.id] = { ...nextDraft, updatedAt: now };
   return { ...state, drafts };
 }
 

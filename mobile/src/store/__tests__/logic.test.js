@@ -124,6 +124,19 @@ describe('campaign creation', () => {
     expect(state.drafts[second.id]).toBeUndefined();
     expect(state.drafts[first.id]).toBeTruthy();
   });
+
+  test('saving an unchanged draft does not create a new state', () => {
+    const { user } = signup();
+    const saved = L.upsertDraft(fresh(), L.emptyDraft(user.id, NOW), NOW);
+    const draft = Object.values(saved.drafts)[0];
+
+    expect(L.upsertDraft(saved, { ...draft, updatedAt: NOW + 1 }, NOW + 2)).toBe(saved);
+
+    const changed = L.upsertDraft(saved, { ...draft, title: 'Updated title' }, NOW + 3);
+    expect(changed).not.toBe(saved);
+    expect(changed.drafts[draft.id].title).toBe('Updated title');
+    expect(changed.drafts[draft.id].updatedAt).toBe(NOW + 3);
+  });
 });
 
 describe('saved campaigns', () => {

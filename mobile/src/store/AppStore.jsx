@@ -64,6 +64,8 @@ export function AppProvider({ children }) {
     return wrapped ? out : { state: next };
   }, []);
 
+  const saveDraftProgress = useCallback((draft) => run((s) => L.upsertDraft(s, draft)), [run]);
+
   // Wipes this app's stored records and re-seeds the demo dataset.
   const resetDemoData = useCallback(async () => {
     await clearAllData();
@@ -93,7 +95,7 @@ export function AppProvider({ children }) {
 
       /* campaigns */
       newDraft: () => L.emptyDraft(actor),
-      saveDraftProgress: (draft) => run((s) => L.upsertDraft(s, draft)),
+      saveDraftProgress,
       discardDraft: (id) => run((s) => L.discardDraft(s, id)),
       publishDraft: (id) => run((s) => L.publishDraft(s, id)),
       keepAsDraftCampaign: (id) => run((s) => L.saveDraftAsCampaign(s, id)),
@@ -141,7 +143,7 @@ export function AppProvider({ children }) {
         name: (id) => L.displayName(state, id),
       },
     };
-  }, [state, ready, run]);
+  }, [state, ready, run, saveDraftProgress]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

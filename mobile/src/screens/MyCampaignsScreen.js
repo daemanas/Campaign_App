@@ -83,16 +83,16 @@ export default function MyCampaignsScreen({ navigation, route }) {
   return (
     <Screen bg={C.bg}>
       <View style={styles.topBar}>
-        <IconButton icon="arrow-left" bg="#fff" border onPress={() => navigation.goBack()} />
-        <View style={{ flex: 1, marginLeft: 12 }}>
-          <T w={800} s={19} color={C.ink}>
+        <IconButton icon="arrow-left" bg="#fff" border size={36} iconSize={18} onPress={() => navigation.goBack()} />
+        <View style={{ flex: 1, marginLeft: 10 }}>
+          <T w={800} s={18} color={C.ink}>
             Manage campaigns
           </T>
-          <T w={400} s={12} color={C.muted} style={{ marginTop: 2 }}>
+          <T w={400} s={11.5} color={C.muted} style={{ marginTop: 1 }}>
             {mine.length} record{mine.length === 1 ? '' : 's'} · {drafts.length} draft{drafts.length === 1 ? '' : 's'}
           </T>
         </View>
-        <IconButton icon="plus" bg="#fff" border onPress={() => navigation.navigate('CreateFlow')} />
+        <IconButton icon="plus" bg="#fff" border size={36} iconSize={18} onPress={() => navigation.navigate('CreateFlow')} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.pad}>
@@ -113,52 +113,60 @@ export default function MyCampaignsScreen({ navigation, route }) {
             const expanded = openId === c.id;
             const color = cat(c.category);
             return (
-              <Card key={c.id} style={{ marginBottom: 14 }}>
+              <Card key={c.id} style={styles.campaignCard}>
                 <View style={{ flexDirection: 'row' }}>
                   <View style={styles.thumb}>
                     <SmartImage source={c.cover} category={c.category} style={StyleSheet.absoluteFill} />
                   </View>
-                  <View style={{ flex: 1, marginLeft: 12 }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                      <Pill label={c.category} icon={color.icon} fg={color.fg} bg={color.bg} size={10.5} />
+                  <View style={{ flex: 1, marginLeft: 10 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+                      <Pill label={c.category} icon={color.icon} fg={color.fg} bg={color.bg} size={10} />
                       {c.status === 'completed' ? (
-                        <Pill label="Closed" icon="check-circle-outline" fg={C.muted} bg="#F0EFF6" size={10.5} />
+                        <Pill label="Closed" icon="check-circle-outline" fg={C.muted} bg="#F0EFF6" size={10} />
                       ) : (
-                        <Pill label={c.daysLeft + ' days left'} icon="clock-outline" fg={C.amber} bg="#FFF3D9" size={10.5} />
+                        <Pill label={c.daysLeft + ' days left'} icon="clock-outline" fg={C.amber} bg="#FFF3D9" size={10} />
                       )}
                     </View>
-                    <T w={800} s={15} color={C.ink} numberOfLines={2} style={{ marginTop: 7, letterSpacing: -0.2 }}>
+                    <T w={800} s={14} color={C.ink} numberOfLines={2} style={{ marginTop: 5, letterSpacing: -0.2 }}>
                       {c.title}
                     </T>
                   </View>
                 </View>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 13 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                   <Progress percent={c.percent} style={{ flex: 1 }} />
-                  <T w={800} s={12} color={C.ink} style={{ marginLeft: 10 }}>
+                  <T w={800} s={11.5} color={C.ink} style={{ marginLeft: 8 }}>
                     {c.percent}%
                   </T>
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
                   <View style={{ flex: 1.2 }}>
-                    <T w={500} s={12} color={C.muted}>
-                      <T w={800} s={13.5} color={C.purple}>{money(c.raisedAmount)}</T> raised
+                    <T w={500} s={11.5} color={C.muted}>
+                      <T w={800} s={12.5} color={C.purple}>{money(c.raisedAmount)}</T> raised
                     </T>
                   </View>
                   <View style={{ flex: 1 }}>
-                    <T w={500} s={12} color={C.muted}>{compact(c.supporters)} supporters</T>
+                    <T w={500} s={11.5} color={C.muted}>{compact(c.supporters)} supporters</T>
                   </View>
                   <View style={{ flex: 0.8, alignItems: 'flex-end' }}>
-                    <T w={500} s={12} color={C.muted}>{compact(c.views)} views</T>
+                    <T w={500} s={11.5} color={C.muted}>{compact(c.views)} views</T>
                   </View>
                 </View>
 
                 <View style={styles.actions}>
-                  <SoftButton label="View page" icon="open-in-new" style={{ flexGrow: 1 }} onPress={() => navigation.navigate('Detail', { id: c.id })} />
+                  <SoftButton
+                    label="View page"
+                    icon="open-in-new"
+                    style={styles.btnSmall}
+                    textStyle={{ fontSize: 12 }}
+                    onPress={() => navigation.navigate('Detail', { id: c.id })}
+                  />
                   <SoftButton
                     label={expanded ? 'Hide editor' : 'Add update'}
                     icon={expanded ? 'chevron-up' : 'bullhorn-outline'}
-                    style={{ flexGrow: 1 }}
+                    style={styles.btnSmall}
+                    textStyle={{ fontSize: 12 }}
                     onPress={() => {
                       setOpenId(expanded ? null : c.id);
                       setNote(null);
@@ -168,10 +176,10 @@ export default function MyCampaignsScreen({ navigation, route }) {
 
                 {expanded ? (
                   <View style={styles.editor}>
-                    <T w={700} s={13} color={C.ink}>
+                    <T w={700} s={12.5} color={C.ink}>
                       Share an update
                     </T>
-                    <T w={400} s={11.5} color={C.muted} style={{ marginTop: 3, lineHeight: 17 }}>
+                    <T w={400} s={11} color={C.muted} style={{ marginTop: 2, lineHeight: 16 }}>
                       Supporters see this on the campaign page under Updates.
                     </T>
                     <TextInput
@@ -183,26 +191,33 @@ export default function MyCampaignsScreen({ navigation, route }) {
                       style={styles.editorInput}
                       maxLength={300}
                     />
-                    <T w={500} s={11} color={C.mutedLight} style={{ marginTop: 6 }}>
+                    <T w={500} s={10.5} color={C.mutedLight} style={{ marginTop: 4 }}>
                       {text.length}/300 · minimum 5 characters
                     </T>
-                    <View style={{ marginTop: 12 }}>
-                      <GradButton label="Publish update" icon="send" disabled={text.trim().length < 5} onPress={addUpdate} />
+                    <View style={{ marginTop: 10 }}>
+                      <GradButton
+                        label="Publish update"
+                        icon="send"
+                        disabled={text.trim().length < 5}
+                        style={{ paddingVertical: 9 }}
+                        textStyle={{ fontSize: 12.5 }}
+                        onPress={addUpdate}
+                      />
                     </View>
 
                     {(c.updates || []).length ? (
-                      <View style={{ marginTop: 16 }}>
-                        <T w={700} s={11.5} color={C.mutedLight} style={{ marginBottom: 8, letterSpacing: 0.4 }}>
+                      <View style={{ marginTop: 14 }}>
+                        <T w={700} s={11} color={C.mutedLight} style={{ marginBottom: 6, letterSpacing: 0.4 }}>
                           POSTED UPDATES
                         </T>
                         {c.updates.map((u) => (
                           <View key={u.id} style={styles.updateRow}>
-                            <Icon name="bullhorn-outline" size={14} color={C.purpleDeep} />
-                            <View style={{ flex: 1, marginLeft: 9 }}>
-                              <T w={500} s={12.5} color={C.ink} style={{ lineHeight: 18 }}>
+                            <Icon name="bullhorn-outline" size={13} color={C.purpleDeep} />
+                            <View style={{ flex: 1, marginLeft: 8 }}>
+                              <T w={500} s={12} color={C.ink} style={{ lineHeight: 17 }}>
                                 {u.text}
                               </T>
-                              <T w={500} s={11} color={C.mutedLight} style={{ marginTop: 3 }}>
+                              <T w={500} s={10.5} color={C.mutedLight} style={{ marginTop: 2 }}>
                                 {logic.timeLabel(u.createdAt, now)}
                               </T>
                             </View>
@@ -213,9 +228,25 @@ export default function MyCampaignsScreen({ navigation, route }) {
 
                     <View style={styles.dangerRow}>
                       {c.status === 'completed' ? null : (
-                        <SoftButton label="Close campaign" icon="check-circle-outline" color={C.muted} bg="#F0EFF6" style={{ flexGrow: 1 }} onPress={() => closeCampaign(c)} />
+                        <SoftButton
+                          label="Close campaign"
+                          icon="check-circle-outline"
+                          color={C.muted}
+                          bg="#F0EFF6"
+                          style={styles.btnSmall}
+                          textStyle={{ fontSize: 11.5 }}
+                          onPress={() => closeCampaign(c)}
+                        />
                       )}
-                      <SoftButton label="Delete" icon="trash-can-outline" color={C.red} bg="#FFE5EA" style={{ flexGrow: 1 }} onPress={() => removeCampaign(c)} />
+                      <SoftButton
+                        label="Delete"
+                        icon="trash-can-outline"
+                        color={C.red}
+                        bg="#FFE5EA"
+                        style={styles.btnSmall}
+                        textStyle={{ fontSize: 11.5 }}
+                        onPress={() => removeCampaign(c)}
+                      />
                     </View>
                   </View>
                 ) : null}
@@ -233,28 +264,28 @@ export default function MyCampaignsScreen({ navigation, route }) {
         )}
 
         {drafts.length ? (
-          <Card style={{ marginTop: 6 }}>
-            <T w={800} s={15} color={C.ink}>
+          <Card style={{ marginTop: 8, padding: 14 }}>
+            <T w={800} s={14.5} color={C.ink}>
               Drafts
             </T>
-            <T w={400} s={12} color={C.muted} style={{ marginTop: 3, lineHeight: 17 }}>
+            <T w={400} s={11.5} color={C.muted} style={{ marginTop: 2, lineHeight: 16 }}>
               Unfinished campaigns are saved on this device as you type.
             </T>
             {drafts.map((d) => (
               <View key={d.id} style={styles.draftRow}>
                 <View style={{ flex: 1 }}>
-                  <T w={600} s={13.5} color={C.ink} numberOfLines={1}>
+                  <T w={600} s={13} color={C.ink} numberOfLines={1}>
                     {d.title || 'Untitled campaign'}
                   </T>
-                  <T w={400} s={11.5} color={C.muted} style={{ marginTop: 2 }}>
+                  <T w={400} s={11} color={C.muted} style={{ marginTop: 1 }}>
                     Step {d.step || 1} of 3 · edited {logic.timeLabel(d.updatedAt, now).toLowerCase()}
                   </T>
                 </View>
                 <Pressable onPress={() => navigation.navigate('CreateFlow', { draftId: d.id })} hitSlop={8} style={styles.draftBtn}>
-                  <Icon name="pencil-outline" size={15} color={C.purpleDeep} />
+                  <Icon name="pencil-outline" size={14} color={C.purpleDeep} />
                 </Pressable>
                 <Pressable onPress={() => dropDraft(d)} hitSlop={8} style={[styles.draftBtn, { marginLeft: 6 }]}>
-                  <Icon name="trash-can-outline" size={15} color={C.red} />
+                  <Icon name="trash-can-outline" size={14} color={C.red} />
                 </Pressable>
               </View>
             ))}
@@ -266,41 +297,43 @@ export default function MyCampaignsScreen({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-  topBar: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 },
-  pad: { paddingHorizontal: 16, paddingTop: 10, paddingBottom: 40 },
-  thumb: { width: 74, height: 74, borderRadius: 14, overflow: 'hidden', backgroundColor: '#E9E5F7' },
-  note: { flexDirection: 'row', alignItems: 'center', borderRadius: 13, padding: 12, marginBottom: 14 },
+  topBar: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 6, paddingBottom: 6 },
+  pad: { paddingHorizontal: 16, paddingTop: 6, paddingBottom: 30 },
+  campaignCard: { marginBottom: 12, padding: 14 },
+  thumb: { width: 64, height: 64, borderRadius: 12, overflow: 'hidden', backgroundColor: '#E9E5F7' },
+  note: { flexDirection: 'row', alignItems: 'center', borderRadius: 10, padding: 10, marginBottom: 12 },
   noteOk: { backgroundColor: '#E4F7EE' },
   noteBad: { backgroundColor: '#FFE9EC' },
-  actions: { flexDirection: 'row', gap: 8, marginTop: 14 },
-  editor: { marginTop: 14, paddingTop: 14, borderTopWidth: 1, borderTopColor: C.borderSoft },
+  actions: { flexDirection: 'row', gap: 8, marginTop: 12 },
+  btnSmall: { flexGrow: 1, paddingVertical: 8 },
+  editor: { marginTop: 12, paddingTop: 12, borderTopWidth: 1, borderTopColor: C.borderSoft },
   editorInput: {
-    marginTop: 10,
-    minHeight: 96,
-    borderRadius: 14,
+    marginTop: 8,
+    minHeight: 80,
+    borderRadius: 12,
     borderWidth: 1,
     borderColor: C.border,
     backgroundColor: '#fff',
-    padding: 13,
+    padding: 10,
     fontFamily: 'Poppins',
-    fontSize: 14,
+    fontSize: 13,
     color: C.ink,
     textAlignVertical: 'top',
   },
-  updateRow: { flexDirection: 'row', alignItems: 'flex-start', marginTop: 12 },
-  dangerRow: { flexDirection: 'row', gap: 8, marginTop: 16 },
+  updateRow: { flexDirection: 'row', alignItems: 'flex-start', marginTop: 10 },
+  dangerRow: { flexDirection: 'row', gap: 8, marginTop: 12 },
   draftRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 12,
-    paddingTop: 12,
+    marginTop: 10,
+    paddingTop: 10,
     borderTopWidth: 1,
     borderTopColor: C.borderSoft,
   },
   draftBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 11,
+    width: 32,
+    height: 32,
+    borderRadius: 10,
     backgroundColor: C.purpleSoft,
     alignItems: 'center',
     justifyContent: 'center',

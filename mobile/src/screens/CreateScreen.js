@@ -36,6 +36,7 @@ const COVER_PRESETS = [
 
 export default function CreateScreen({ navigation, route }) {
   const app = useApp();
+  const saveDraftProgress = app.saveDraftProgress;
   const drafts = app.selectors.drafts();
   const wanted = route.params?.draftId ? drafts.find((d) => d.id === route.params.draftId) : null;
   const starting = wanted || drafts[0] || app.newDraft();
@@ -53,9 +54,9 @@ export default function CreateScreen({ navigation, route }) {
   const persist = useCallback(
     (next) => {
       if (timer.current) clearTimeout(timer.current);
-      timer.current = setTimeout(() => app.saveDraftProgress(next), 400);
+      timer.current = setTimeout(() => saveDraftProgress(next), 400);
     },
-    [app]
+    [saveDraftProgress]
   );
 
   const patch = useCallback(
@@ -73,9 +74,9 @@ export default function CreateScreen({ navigation, route }) {
   useEffect(
     () => () => {
       if (timer.current) clearTimeout(timer.current);
-      if (!closedRef.current && hasContent(draftRef.current)) app.saveDraftProgress(draftRef.current);
+      if (!closedRef.current && hasContent(draftRef.current)) saveDraftProgress(draftRef.current);
     },
-    [app]
+    [saveDraftProgress]
   );
 
   const goStep = (n) => {
@@ -91,7 +92,7 @@ export default function CreateScreen({ navigation, route }) {
 
   const submit = () => {
     setBusy(true);
-    app.saveDraftProgress(draft);
+    saveDraftProgress(draft);
     const res = app.publishDraft(draft.id);
     setBusy(false);
     if (res.error) {
@@ -105,7 +106,7 @@ export default function CreateScreen({ navigation, route }) {
   };
 
   const keepDraft = () => {
-    app.saveDraftProgress(draft);
+    saveDraftProgress(draft);
     closedRef.current = true;
     navigation.goBack();
   };
