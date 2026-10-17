@@ -1,0 +1,28 @@
+node_modules/ 
+.env android/
+.gradle/ 
+ndroid/app/build/ 
+
+
+# Dependencies
+node_modules/
+
+# React Native / Android build files
+mobile/android/.gradle/
+mobile/android/build/
+mobile/android/app/build/
+mobile/android/.cxx/
+
+# General build outputs
+dist/
+build/
+
+# Environment secrets
+.env
+.env.*
+
+# Keep example environment files
+!.env.example
+
+# Logs
+*.log

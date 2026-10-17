@@ -1,0 +1,4 @@
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/Debug/3z6s675f/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/Debug/3z6s675f/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/Debug/3z6s675f/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/Debug/3z6s675f/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir
