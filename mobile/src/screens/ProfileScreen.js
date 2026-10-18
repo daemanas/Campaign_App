@@ -169,19 +169,6 @@ export default function ProfileScreen({ navigation, route }) {
               ring
             />
             <View style={{ flex: 1 }} />
-            {/* {user ? (
-              <SoftButton
-                label="Edit profile"
-                icon="pencil-outline"
-                onPress={editProfile}
-              />
-            ) : (
-              <SoftButton
-                label="Sign in"
-                icon="login"
-                onPress={() => gate.requireAuth({ kind: "editProfile" })}
-              />
-            )} */}
           </View>
 
           {/* User Info (Left-aligned as per reference image) */}
@@ -678,4 +665,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   badgeIconOn: { backgroundColor: C.purpleSoft },
+  banner: { 
+    height: 180, 
+    backgroundColor: "#2D1B69", 
+    position: "relative",
+    overflow: 'hidden', // ব্যানার ইমেজ যেন সীমার বাইরে না যায়
+  },
+  body: { 
+    paddingHorizontal: 16, 
+    marginTop: -42, 
+    backgroundColor: C.bg, // নিচের অংশে যেন ব্যানার না দেখা যায়
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
 });
