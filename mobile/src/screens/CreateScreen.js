@@ -560,6 +560,10 @@ function Guidelines({ agreed, onToggle, missing }) {
 
 function StepPreview({ draft, goal, app }) {
   const cat = CATEGORY_COLORS[draft.category] || CATEGORY_COLORS.Community;
+  const numericGoal = Number(draft.goalAmount) || 0;
+  
+  // Estimation calculation based on the image provided
+  const estimatedPeople = Math.round(numericGoal * 27);
 
   return (
     <View>
@@ -567,9 +571,8 @@ function StepPreview({ draft, goal, app }) {
         This is how your campaign will appear in Home and Explore after you submit.
       </T>
 
-      {/* রিয়েল-টাইম কার্ড প্রিভিউ - ক্লিন ও প্রফেশনাল ডিজাইন */}
+      {/* Campaign Card Preview */}
       <View style={styles.previewCard}>
-        {/* ইমেজের জন্য নির্দিষ্ট কন্টেইনার */}
         <View style={styles.previewImageWrap}>
           <SmartImage
             source={draft.cover}
@@ -591,7 +594,6 @@ function StepPreview({ draft, goal, app }) {
           </View>
         </View>
 
-        {/* কার্ডের কন্টেন্ট ও ইনফরমেশন সেকশন */}
         <View style={{ padding: 14 }}>
           <T w={800} s={15} color={C.ink} numberOfLines={1}>
             {draft.title || 'Untitled campaign'}
@@ -623,7 +625,23 @@ function StepPreview({ draft, goal, app }) {
         </View>
       </View>
 
-      {/* সাবমিটের আগের চেক লিস্ট সেকশন */}
+      {/* NEW ESTIMATED REACH SECTION */}
+      <Card style={{ padding: 16, marginTop: 16, backgroundColor: '#F8F7FC' }}>
+        <T w={700} s={11} color={C.purple} style={{ letterSpacing: 0.8 }}>
+          ESTIMATED REACH AT GOAL
+        </T>
+        <T w={800} s={24} color={C.ink} style={{ marginTop: 4 }}>
+          {estimatedPeople.toLocaleString()} people
+        </T>
+        <T w={400} s={12.5} color={C.muted} style={{ marginTop: 6, lineHeight: 18 }}>
+          {money(numericGoal)} raised puts this message in front of about {estimatedPeople.toLocaleString()} people. $1 = about 27 people.
+        </T>
+        <T w={400} s={10.5} color={C.mutedLight} style={{ marginTop: 8, lineHeight: 15 }}>
+          Estimate only — based on the current platform rate, after the 20% platform fee and payment processing. Actual delivery varies with your audience and the ad auction.
+        </T>
+      </Card>
+
+      {/* Before you submit Checklist */}
       <Card style={{ padding: 16, marginTop: 16 }}>
         <T w={800} s={15} color={C.ink}>
           Before you submit

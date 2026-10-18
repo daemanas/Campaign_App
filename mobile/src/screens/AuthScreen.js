@@ -143,7 +143,7 @@ export default function AuthScreen({ navigation, route }) {
               <Field
                 label="Email or username"
                 icon="account-outline"
-                placeholder="daemanas12"
+                placeholder="amit"
                 value={loginForm.identifier}
                 autoCapitalize="none"
                 onChangeText={(v) => {
@@ -260,7 +260,7 @@ export default function AuthScreen({ navigation, route }) {
                   Use the demo account
                 </T>
                 <T w={400} s={11} color={C.muted} style={{ marginTop: 2 }}>
-                  daemanas12 · amplify123 — pre-filled campaigns and history
+                  demoaccount · amplify123 — pre-filled campaigns and history
                 </T>
               </View>
             </Pressable>

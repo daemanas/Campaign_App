@@ -1,0 +1,15 @@
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/CMakeFiles/appmodules.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/CMakeFiles/edit_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/CMakeFiles/rebuild_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/rnasyncstorage_autolinked_build/CMakeFiles/react_codegen_rnasyncstorage.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/rnasyncstorage_autolinked_build/CMakeFiles/edit_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/rnasyncstorage_autolinked_build/CMakeFiles/rebuild_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/RNImagePickerSpec_autolinked_build/CMakeFiles/react_codegen_RNImagePickerSpec.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/RNImagePickerSpec_autolinked_build/CMakeFiles/edit_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/RNImagePickerSpec_autolinked_build/CMakeFiles/rebuild_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/safeareacontext_autolinked_build/CMakeFiles/edit_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/safeareacontext_autolinked_build/CMakeFiles/rebuild_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/rnscreens_autolinked_build/CMakeFiles/react_codegen_rnscreens.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/rnscreens_autolinked_build/CMakeFiles/edit_cache.dir
+D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86/rnscreens_autolinked_build/CMakeFiles/rebuild_cache.dir

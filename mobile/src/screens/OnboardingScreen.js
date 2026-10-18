@@ -15,7 +15,7 @@ const PAGES = [
     body: 'Discover social campaigns, contribute and create real change together.',
     pills: [
       { label: 'Environment', icon: 'leaf', fg: '#8CE6B8', bg: 'rgba(23,120,80,0.62)', top: 296, left: 20 },
-      { label: 'Education', icon: 'school', fg: '#E4DBFF', bg: 'rgba(90,62,240,0.66)', top: 284, left: 150 },
+      // { label: 'Education', icon: 'school', fg: '#E4DBFF', bg: 'rgba(90,62,240,0.66)', top: 284, left: 150 },
       { label: 'Health', icon: 'heart', fg: '#FFD3DD', bg: 'rgba(190,45,80,0.60)', top: 296, right: 20 },
       { label: 'Animals', icon: 'paw', fg: '#FFE7B8', bg: 'rgba(170,110,20,0.58)', top: 366, left: 44 },
       { label: 'Community', icon: 'account-group', fg: '#D6E7FF', bg: 'rgba(40,80,180,0.58)', top: 360, right: 24 },

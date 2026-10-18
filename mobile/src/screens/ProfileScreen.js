@@ -128,11 +128,13 @@ export default function ProfileScreen({ navigation, route }) {
       >
         {/* ------------------------------------------------------------- Banner */}
         <View style={styles.banner}>
-          <SmartImage
-            source={user ? user.banner : null}
-            category="Community"
-            style={StyleSheet.absoluteFill}
-          />
+          {user?.banner ? (
+            <SmartImage
+              source={user.banner}
+              category="Community"
+              style={StyleSheet.absoluteFill}
+            />
+          ) : null}
           <View style={styles.bannerFade} />
           <View style={styles.bannerRow}>
             <View style={{ flex: 1 }} />
