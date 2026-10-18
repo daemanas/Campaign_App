@@ -201,7 +201,8 @@ export default function MyCampaignsScreen({ navigation, route }) {
                     <SmartImage
                       source={c.cover}
                       category={c.category}
-                      style={StyleSheet.absoluteFill}
+                      resizeMode="cover"
+                      style={{ width: "100%", height: "100%" }}
                     />
                   </View>
                   <View style={{ flex: 1, marginLeft: 10 }}>

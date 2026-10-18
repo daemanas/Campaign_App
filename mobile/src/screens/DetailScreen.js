@@ -286,17 +286,19 @@ export default function DetailScreen({ navigation, route }) {
               </View>
             </Pressable>
 
-            <View style={{ marginTop: 10 }}>
-              <SoftButton
-                label={following ? "Following" : "Follow"}
-                icon={following ? "check" : "plus"}
-                color={following ? C.green : C.purple}
-                bg={following ? "#DCF5E7" : C.purpleSoft}
-                style={styles.followBtn}
-                textStyle={{ fontSize: 12.5 }}
-                onPress={() => app.toggleFollow(c.organizer.id)}
-              />
-            </View>
+            {!mine ? (
+              <View style={{ marginTop: 10 }}>
+                <SoftButton
+                  label={following ? "Following" : "Follow"}
+                  icon={following ? "check" : "plus"}
+                  color={following ? C.green : C.purple}
+                  bg={following ? "#DCF5E7" : C.purpleSoft}
+                  style={styles.followBtn}
+                  textStyle={{ fontSize: 12.5 }}
+                  onPress={() => app.toggleFollow(c.organizer.id)}
+                />
+              </View>
+            ) : null}
           </Card>
 
           {/* ----------------------------------------------------------- Progress Card */}
@@ -563,7 +565,12 @@ function About({ c, records, onSupporters }) {
       <T w={800} s={16} color={C.ink}>
         About This Campaign
       </T>
-      <T w={400} s={13} color={C.inkSoft} style={{ marginTop: 8, lineHeight: 21 }}>
+      <T
+        w={400}
+        s={13}
+        color={C.inkSoft}
+        style={{ marginTop: 8, lineHeight: 21 }}
+      >
         {c.description || c.summary}
       </T>
 
@@ -581,7 +588,12 @@ function About({ c, records, onSupporters }) {
         <View style={styles.metaBadge}>
           <Icon name="calendar-blank-outline" size={13} color={C.purpleDeep} />
           <T w={600} s={11.5} color={C.inkSoft} style={{ marginLeft: 5 }}>
-            Runs until {new Date(c.endDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+            Runs until{" "}
+            {new Date(c.endDate).toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })}
           </T>
         </View>
       </View>
@@ -589,8 +601,15 @@ function About({ c, records, onSupporters }) {
       {c.gallery && c.gallery.length > 1 ? (
         <View style={styles.gallery}>
           {c.gallery.slice(0, 4).map((src, i) => (
-            <View key={i} style={[styles.galleryCell, i === 3 && { marginRight: 0 }]}>
-              <SmartImage source={src} category={c.category} style={StyleSheet.absoluteFill} />
+            <View
+              key={i}
+              style={[styles.galleryCell, i === 3 && { marginRight: 0 }]}
+            >
+              <SmartImage
+                source={src}
+                category={c.category}
+                style={StyleSheet.absoluteFill}
+              />
               {i === 3 && c.gallery.length > 4 ? (
                 <View style={styles.galleryMore}>
                   <T w={700} s={12} color="#fff">
@@ -610,9 +629,13 @@ function About({ c, records, onSupporters }) {
             <Avatar
               key={r.id || i}
               source={r.donorAvatar}
-              name={r.donorName || 'A'}
+              name={r.donorName || "A"}
               size={26}
-              style={{ marginLeft: i === 0 ? 0 : -8, borderWidth: 1.5, borderColor: '#fff' }}
+              style={{
+                marginLeft: i === 0 ? 0 : -8,
+                borderWidth: 1.5,
+                borderColor: "#fff",
+              }}
             />
           ))}
         </View>
@@ -620,7 +643,11 @@ function About({ c, records, onSupporters }) {
         <View style={{ flex: 1, marginLeft: records.length ? 10 : 0 }}>
           {records.length > 0 ? (
             <T w={500} s={12.5} color={C.muted} numberOfLines={1}>
-              Supported by <T w={800} s={13} color={C.ink}>{compact(c.supporters)}</T> people
+              Supported by{" "}
+              <T w={800} s={13} color={C.ink}>
+                {compact(c.supporters)}
+              </T>{" "}
+              people
             </T>
           ) : (
             <T w={500} s={12.5} color={C.muted}>
@@ -924,28 +951,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   metaBadgeRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
     gap: 8,
     marginTop: 14,
   },
   metaBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#F3F0FC',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F3F0FC",
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 6,
   },
   supporterStrip: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 18,
     paddingHorizontal: 14,
     paddingVertical: 12,
     borderRadius: 14,
-    backgroundColor: '#F8F7FC',
+    backgroundColor: "#F8F7FC",
     borderWidth: 1,
-    borderColor: '#EFEFF6',
+    borderColor: "#EFEFF6",
   },
 });

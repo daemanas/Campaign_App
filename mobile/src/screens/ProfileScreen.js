@@ -242,7 +242,7 @@ export default function ProfileScreen({ navigation, route }) {
                   pressed && { opacity: 0.7 },
                 ]}
               >
-                <T w={800} s={20} color={C.ink}>
+                <T w={700} s={16} color={C.ink}>
                   {stats.created}
                 </T>
                 <T w={500} s={12} color={C.muted} style={{ marginTop: 2 }}>
@@ -260,7 +260,7 @@ export default function ProfileScreen({ navigation, route }) {
                   pressed && { opacity: 0.7 },
                 ]}
               >
-                <T w={800} s={20} color={C.ink}>
+                <T w={700} s={16} color={C.ink}>
                   {stats.supportedCampaigns}
                 </T>
                 <T w={500} s={12} color={C.muted} style={{ marginTop: 2 }}>
@@ -272,7 +272,7 @@ export default function ProfileScreen({ navigation, route }) {
 
               {/* Followers */}
               <View style={styles.statItem}>
-                <T w={800} s={20} color={C.ink}>
+                <T w={700} s={16} color={C.ink}>
                   {compact(stats.followers)}
                 </T>
                 <T w={500} s={12} color={C.muted} style={{ marginTop: 2 }}>
@@ -284,7 +284,7 @@ export default function ProfileScreen({ navigation, route }) {
 
               {/* Following */}
               <View style={styles.statItem}>
-                <T w={800} s={20} color={C.ink}>
+                <T w={700} s={16} color={C.ink}>
                   {followingIds.length}
                 </T>
                 <T w={500} s={12} color={C.muted} style={{ marginTop: 2 }}>
@@ -581,7 +581,7 @@ const styles = StyleSheet.create({
   },
   statsCard: {
     marginTop: 16,
-    paddingVertical: 14,
+    paddingVertical: 10,
     paddingHorizontal: 6,
     borderRadius: 18,
     backgroundColor: "#FFFFFF",
