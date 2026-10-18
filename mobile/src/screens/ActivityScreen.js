@@ -90,12 +90,12 @@ export default function ActivityScreen({ navigation }) {
 
         <View style={styles.head}>
           <View style={{ flex: 1 }}>
-            <T w={800} s={26} color={C.ink}>
+            <T w={800} s={20} color={C.ink}>
               Activity
             </T>
             <T
               w={400}
-              s={13.5}
+              s={10}
               color={C.muted}
               style={{ marginTop: 4, lineHeight: 19 }}
             >

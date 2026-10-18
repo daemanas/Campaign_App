@@ -19,7 +19,7 @@ import { CATEGORIES, DURATIONS } from '../store/seed';
 import { Icon } from '../components/Icon';
 import { Avatar, SmartImage } from '../components/SmartImage';
 import { CampaignCard } from '../components/CampaignCard';
-import { Card, Divider, Field, GradButton, IconButton, Progress, Screen, SoftButton, T } from '../components/ui';
+import { Card, Divider, Field, GradButton, IconButton, Progress, Screen, SoftButton, T,Pill } from '../components/ui';
 
 const GOAL_PRESETS = [10000, 25000, 50000, 100000];
 const STEPS = ['Basics', 'Story', 'Preview'];
@@ -248,7 +248,7 @@ function StepBasics({ draft, goal, patch, pickImage, picking, onPreset, removeIm
       <Pressable onPress={picking ? undefined : pickImage} style={({ pressed }) => [styles.cover, pressed && { opacity: 0.96 }]}>
         {draft.cover ? (
           <>
-            <SmartImage source={draft.cover} category={draft.category || 'Community'} style={StyleSheet.absoluteFill} />
+            <SmartImage source={draft.cover} category={draft.category || 'Community'} resizeMode="cover" style={{width: '100%', height: '100%'}} />
             <View style={styles.coverBar}>
               <T w={700} s={12.5} color="#fff">
                 Tap to replace
@@ -291,7 +291,11 @@ function StepBasics({ draft, goal, patch, pickImage, picking, onPreset, removeIm
               pressed && { opacity: 0.9 },
             ]}
           >
-            <SmartImage source={p.ref} style={StyleSheet.absoluteFill} />
+            <SmartImage 
+              source={p.ref} 
+              resizeMode="cover"
+              style={{ width: '100%', height: '100%' }} 
+            />
           </Pressable>
         ))}
       </View>
@@ -323,7 +327,7 @@ function StepBasics({ draft, goal, patch, pickImage, picking, onPreset, removeIm
               style={({ pressed }) => [styles.cat, { backgroundColor: on ? col.bg : '#fff', borderColor: on ? col.fg : C.border }, pressed && { opacity: 0.92 }]}
             >
               <Icon name={c.icon} size={18} color={col.fg} />
-              <T w={700} s={11} color={on ? col.fg : C.inkSoft} style={{ marginTop: 6, textAlign: 'center' }}>
+              <T w={700} s={8} color={on ? col.fg : C.inkSoft} style={{ marginTop: 6, textAlign: 'center' }}>
                 {c.label}
               </T>
             </Pressable>
@@ -469,58 +473,173 @@ function Guidelines({ agreed, onToggle, missing }) {
   );
 }
 
+// function StepPreview({ draft, goal, app }) {
+//   const preview = {
+//     id: 'preview',
+//     title: draft.title || 'Untitled campaign',
+//     summary: draft.summary || 'Your one-line summary appears here.',
+//     description: draft.description,
+//     category: draft.category || 'Community',
+//     goalAmount: goal,
+//     raisedAmount: 0,
+//     supporters: 0,
+//     percent: 0,
+//     daysLeft: draft.days || 0,
+//     remaining: goal,
+//     cover: draft.cover,
+//     gallery: draft.cover ? [draft.cover] : [],
+//     tags: splitTags(draft.tagsText),
+//     location: draft.location,
+//     status: 'active',
+//     organizer: {
+//       id: app.actor,
+//       name: app.user ? app.user.name : 'You',
+//       tagline: 'Campaign organizer',
+//       verified: !!(app.user && app.user.verified),
+//       avatar: app.user ? app.user.avatar : null,
+//       followers: 0,
+//     },
+//   };
+//   const checks = [
+//     [!!draft.cover, 'Cover image'],
+//     [draft.title.trim().length >= 6, 'Title of 6+ characters'],
+//     [!!draft.category, 'Category chosen'],
+//     [goal >= 1000, 'Target of at least ₹1,000'],
+//     [!!draft.days, 'Duration chosen'],
+//     [draft.summary.trim().length >= 15, 'Summary of 15+ characters'],
+//     [draft.description.trim().length >= 40, 'Description of 40+ characters'],
+//     [draft.location.trim().length >= 3, 'Location'],
+//     [!!draft.agreed, 'Guidelines accepted'],
+//   ];
+
+//   return (
+//     <View>
+//       <T w={400} s={12.5} color={C.muted} style={{ marginBottom: 12, lineHeight: 18 }}>
+//         This is how your campaign will appear in Home and Explore after you submit.
+//       </T>
+//       <CampaignCard c={preview} variant="featured" saved={false} />
+
+//       <Card style={{ padding: 16 }}>
+//         <T w={800} s={15} color={C.ink}>
+//           Before you submit
+//         </T>
+//         <Divider />
+//         {checks.map(([ok, label]) => (
+//           <View key={label} style={styles.checkRow}>
+//             <Icon name={ok ? 'check-circle' : 'checkbox-blank-circle-outline'} size={17} color={ok ? C.green : C.mutedLight} />
+//             <T w={600} s={13} color={ok ? C.ink : C.muted} style={{ marginLeft: 10, flex: 1 }}>
+//               {label}
+//             </T>
+//             <T w={700} s={11} color={ok ? C.green : C.amber}>
+//               {ok ? 'Ready' : 'Needed'}
+//             </T>
+//           </View>
+//         ))}
+//         <Divider />
+//         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+//           <Avatar source={preview.organizer.avatar} name={preview.organizer.name} size={36} />
+//           <View style={{ flex: 1, marginLeft: 11 }}>
+//             <T w={700} s={13.5} color={C.ink}>
+//               {preview.organizer.name}
+//             </T>
+//             <T w={400} s={11.5} color={C.muted}>
+//               Shown as the campaign organizer
+//             </T>
+//           </View>
+//         </View>
+//         <View style={{ marginTop: 16 }}>
+//           <Progress percent={0} />
+//           <T w={500} s={11.5} color={C.muted} style={{ marginTop: 9 }}>
+//             Launches at {money(0)} raised · goal {money(goal)} · {draft.days || 0} days
+//           </T>
+//         </View>
+//       </Card>
+//     </View>
+//   );
+// }
+
 function StepPreview({ draft, goal, app }) {
-  const preview = {
-    id: 'preview',
-    title: draft.title || 'Untitled campaign',
-    summary: draft.summary || 'Your one-line summary appears here.',
-    description: draft.description,
-    category: draft.category || 'Community',
-    goalAmount: goal,
-    raisedAmount: 0,
-    supporters: 0,
-    percent: 0,
-    daysLeft: draft.days || 0,
-    remaining: goal,
-    cover: draft.cover,
-    gallery: draft.cover ? [draft.cover] : [],
-    tags: splitTags(draft.tagsText),
-    location: draft.location,
-    status: 'active',
-    organizer: {
-      id: app.actor,
-      name: app.user ? app.user.name : 'You',
-      tagline: 'Campaign organizer',
-      verified: !!(app.user && app.user.verified),
-      avatar: app.user ? app.user.avatar : null,
-      followers: 0,
-    },
-  };
-  const checks = [
-    [!!draft.cover, 'Cover image'],
-    [draft.title.trim().length >= 6, 'Title of 6+ characters'],
-    [!!draft.category, 'Category chosen'],
-    [goal >= 1000, 'Target of at least ₹1,000'],
-    [!!draft.days, 'Duration chosen'],
-    [draft.summary.trim().length >= 15, 'Summary of 15+ characters'],
-    [draft.description.trim().length >= 40, 'Description of 40+ characters'],
-    [draft.location.trim().length >= 3, 'Location'],
-    [!!draft.agreed, 'Guidelines accepted'],
-  ];
+  const cat = CATEGORY_COLORS[draft.category] || CATEGORY_COLORS.Community;
 
   return (
     <View>
       <T w={400} s={12.5} color={C.muted} style={{ marginBottom: 12, lineHeight: 18 }}>
         This is how your campaign will appear in Home and Explore after you submit.
       </T>
-      <CampaignCard c={preview} variant="featured" saved={false} />
 
-      <Card style={{ padding: 16 }}>
+      {/* রিয়েল-টাইম কার্ড প্রিভিউ - ক্লিন ও প্রফেশনাল ডিজাইন */}
+      <View style={styles.previewCard}>
+        {/* ইমেজের জন্য নির্দিষ্ট কন্টেইনার */}
+        <View style={styles.previewImageWrap}>
+          <SmartImage
+            source={draft.cover}
+            category={draft.category || 'Community'}
+            resizeMode="cover"
+            style={{ width: '100%', height: '100%' }}
+          />
+          <View style={styles.previewCatPill}>
+            <Pill
+              label={draft.category || 'Community'}
+              icon={cat.icon}
+              fg={cat.fg}
+              bg="#f4f4f4"
+              size={9.5}
+            />
+          </View>
+          <View style={styles.previewBookmark}>
+            <Icon name="bookmark-outline" size={14} color="#fff" />
+          </View>
+        </View>
+
+        {/* কার্ডের কন্টেন্ট ও ইনফরমেশন সেকশন */}
+        <View style={{ padding: 14 }}>
+          <T w={800} s={15} color={C.ink} numberOfLines={1}>
+            {draft.title || 'Untitled campaign'}
+          </T>
+          
+          <T w={400} s={11.5} color={C.muted} numberOfLines={2} style={{ marginTop: 4, lineHeight: 17 }}>
+            {draft.summary || 'Your one-line summary appears here.'}
+          </T>
+
+          <Progress percent={0} height={4} style={{ marginTop: 12 }} />
+
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
+            <View>
+              <T w={800} s={14} color={C.purple}>
+                ₹0 <T w={500} s={11} color={C.muted}>raised of {money(goal)}</T>
+              </T>
+            </View>
+            <T w={700} s={11} color={C.purple}>
+              0%
+            </T>
+          </View>
+
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+            <Icon name="account-group-outline" size={13} color={C.mutedLight} />
+            <T w={600} s={11} color={C.inkSoft} style={{ marginLeft: 4 }}>
+              0 supporters
+            </T>
+          </View>
+        </View>
+      </View>
+
+      {/* সাবমিটের আগের চেক লিস্ট সেকশন */}
+      <Card style={{ padding: 16, marginTop: 16 }}>
         <T w={800} s={15} color={C.ink}>
           Before you submit
         </T>
         <Divider />
-        {checks.map(([ok, label]) => (
+        {[
+          [!!draft.cover, 'Cover image'],
+          [draft.title.trim().length >= 6, 'Title of 6+ characters'],
+          [!!draft.category, 'Category chosen'],
+          [goal >= 1000, 'Target of at least ₹1,000'],
+          [!!draft.days, 'Duration chosen'],
+          [draft.summary.trim().length >= 15, 'Summary of 15+ characters'],
+          [draft.description.trim().length >= 40, 'Description of 40+ characters'],
+          [draft.location.trim().length >= 3, 'Location'],
+          [!!draft.agreed, 'Guidelines accepted'],
+        ].map(([ok, label]) => (
           <View key={label} style={styles.checkRow}>
             <Icon name={ok ? 'check-circle' : 'checkbox-blank-circle-outline'} size={17} color={ok ? C.green : C.mutedLight} />
             <T w={600} s={13} color={ok ? C.ink : C.muted} style={{ marginLeft: 10, flex: 1 }}>
@@ -531,28 +650,13 @@ function StepPreview({ draft, goal, app }) {
             </T>
           </View>
         ))}
-        <Divider />
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Avatar source={preview.organizer.avatar} name={preview.organizer.name} size={36} />
-          <View style={{ flex: 1, marginLeft: 11 }}>
-            <T w={700} s={13.5} color={C.ink}>
-              {preview.organizer.name}
-            </T>
-            <T w={400} s={11.5} color={C.muted}>
-              Shown as the campaign organizer
-            </T>
-          </View>
-        </View>
-        <View style={{ marginTop: 16 }}>
-          <Progress percent={0} />
-          <T w={500} s={11.5} color={C.muted} style={{ marginTop: 9 }}>
-            Launches at {money(0)} raised · goal {money(goal)} · {draft.days || 0} days
-          </T>
-        </View>
       </Card>
     </View>
   );
 }
+
+
+
 
 function Published({ id, navigation, app }) {
   const c = app.selectors.campaignView(id);
@@ -776,5 +880,40 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 10 },
     elevation: 10,
+  },
+  previewCard: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#EFEFF6',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+  },
+  previewImageWrap: {
+    width: '100%',
+    height: 165, // পারফেক্ট ব্যালেন্সড ইমেজ হাইট
+    position: 'relative',
+    backgroundColor: '#F3F0FC',
+    overflow: 'hidden',
+  },
+  previewCatPill: {
+    position: 'absolute',
+    top: 12,
+    left: 12,
+  },
+  previewBookmark: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(0,0,0,0.25)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
