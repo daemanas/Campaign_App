@@ -114,7 +114,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "appmodules::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-appmodules-RelWithDebInfo-7fdf35aafcb54429e5d5.json",
+					"jsonFile" : "target-appmodules-RelWithDebInfo-d7825636ff8807b71267.json",
 					"name" : "appmodules",
 					"projectIndex" : 0
 				},
@@ -135,14 +135,14 @@
 				{
 					"directoryIndex" : 4,
 					"id" : "react_codegen_rnscreens::@25bcbd507e98d3a854ad",
-					"jsonFile" : "target-react_codegen_rnscreens-RelWithDebInfo-1ac7725a3264ebfccbac.json",
+					"jsonFile" : "target-react_codegen_rnscreens-RelWithDebInfo-7cf8d8c6367a319d48c3.json",
 					"name" : "react_codegen_rnscreens",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a",
-					"jsonFile" : "target-react_codegen_safeareacontext-RelWithDebInfo-b8ad9e9759d56f17ccc2.json",
+					"jsonFile" : "target-react_codegen_safeareacontext-RelWithDebInfo-2882782451437a21b47c.json",
 					"name" : "react_codegen_safeareacontext",
 					"projectIndex" : 0
 				}
@@ -152,7 +152,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86",
+		"build" : "D:/GPT/Amplify/Amplify/mobile/android/app/.cxx/RelWithDebInfo/4r2l6r6k/x86_64",
 		"source" : "D:/GPT/Amplify/Amplify/mobile/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup"
 	},
 	"version" : 

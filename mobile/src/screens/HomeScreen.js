@@ -492,68 +492,72 @@ export default function HomeScreen({ navigation }) {
         </View>
 
         {/* Share & Campaign Action Card */}
-        
-{/* Share & Campaign Action Card */}
-<View style={styles.actionCard}>
-  <T w={800} s={13} color="#FFFFFF">
-    Help a campaign travel further
-  </T>
 
-  <T
-    w={400}
-    s={10}
-    color="rgba(255,255,255,0.72)"
-    style={{ marginTop: 3, lineHeight: 15 }}
-  >
-    Share, support, and amplify the change.
-  </T>
+        {/* Share & Campaign Action Card */}
+        <View style={styles.actionCard}>
+          <T w={800} s={13} color="#FFFFFF">
+            Help a campaign travel further
+          </T>
 
-  
-<View
-  style={{
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 12,
-    gap: 8,
-  }}
->
-  <SoftButton
-    label="Share reach"
-    icon="share-variant"
-    style={{
-      flex: 0,
-      backgroundColor: "#FFFFFF",
-      paddingVertical: 7,
-      borderRadius: 9,
-      minHeight: 32,
-      width: "45%",
-    }}
-    textStyle={{
-      color: "#6548E8",
-      fontSize: 10,
-      fontWeight: "700",
-    }}
-  />
+          <T
+            w={400}
+            s={10}
+            color="rgba(255,255,255,0.72)"
+            style={{ marginTop: 3, lineHeight: 15 }}
+          >
+            Share, support, and amplify the change.
+          </T>
 
-  <GradButton
-    label="Start campaign"
-    icon="plus"
-    style={{
-      flex: 1,
-      paddingVertical: 0.1,
-      borderRadius: 9,
-      minHeight: 32,
-    }}
-    textStyle={{
-      fontSize: 6,
-      fontWeight: "700",
-    }}
-    onPress={gate.openCreate}
-  />
-</View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 12,
+              gap: 8,
+              flexDirection: "space-between",
+            }}
+          >
+            <SoftButton
+              label="Share reach"
+              icon="share-variant"
+              style={{
+                flex: 0,
+                backgroundColor: "#FFFFFF",
+                paddingVertical: 7,
+                borderRadius: 9,
+                minHeight: 32,
+                width: "45%",
+              }}
+              textStyle={{
+                color: "#6548E8",
+                fontSize: 10,
+                fontWeight: "700",
+              }}
+            />
 
-</View>
+            <GradButton
+              label="Start campaign"
+              icon="plus"
+              style={{
+                // flex: 1,
+                // paddingVertical: 10,
 
+                // paddingHorizontal: 1,
+                borderRadius: 9,
+                // minHeight: 3,
+                // minWidth: "50%",
+                // minHeight: 32,
+                overflow: "hidden",
+              }}
+              textStyle={{
+                fontSize: 6,
+                fontWeight: "700",
+              }}
+              onPress={gate.openCreate}
+            />
+          </View>
+          
+        </View>
       </ScrollView>
     </Screen>
   );
@@ -897,14 +901,13 @@ const styles = StyleSheet.create({
     borderRadius: 21,
     overflow: "hidden",
   },
-  
-actionCard: {
-  backgroundColor: "#151D38",
-  borderRadius: 16,
-  padding: 14,
-  borderWidth: 1,
-  borderColor: "rgba(255,255,255,0.08)",
-  overflow: "hidden",
-},
 
+  actionCard: {
+    backgroundColor: "#151D38",
+    borderRadius: 16,
+    padding: 14,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
+    overflow: "hidden",
+  },
 });
