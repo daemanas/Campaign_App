@@ -634,7 +634,7 @@ function StepPreview({ draft, goal, app }) {
           {estimatedPeople.toLocaleString()} people
         </T>
         <T w={400} s={12.5} color={C.muted} style={{ marginTop: 6, lineHeight: 18 }}>
-          {money(numericGoal)} raised puts this message in front of about {estimatedPeople.toLocaleString()} people. $1 = about 27 people.
+          {money(numericGoal)} raised puts this message in front of about {estimatedPeople.toLocaleString()} people.  ₹95 = about 27 people.
         </T>
         <T w={400} s={10.5} color={C.mutedLight} style={{ marginTop: 8, lineHeight: 15 }}>
           Estimate only — based on the current platform rate, after the 20% platform fee and payment processing. Actual delivery varies with your audience and the ad auction.

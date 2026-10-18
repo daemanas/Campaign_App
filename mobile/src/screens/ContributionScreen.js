@@ -204,13 +204,13 @@ export default function ContributionScreen({ navigation, route }) {
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <SoftButton
                     label="Cancel"
-                    style={{ marginRight: 10 }}
+                    style={{ flex: 1, marginRight: 10 }}
                     onPress={() => setStep("amount")}
                   />
                   <GradButton
                     label="Confirm and support"
                     icon="shield-check-outline"
-                    style={{ flex: 1 }}
+                    style={{ flex: 2 }}
                     onPress={confirm}
                   />
                 </View>
@@ -244,7 +244,7 @@ function MiniCampaign({ c }) {
         <SmartImage
           source={c.cover}
           category={c.category}
-          resizeMode="contain"
+          resizeMode="cover"
           style={{ width: "100%", height: "100%" }}
         />
       </View>
@@ -426,7 +426,7 @@ function DoneStep({ c, done, navigation }) {
         />
       </Card>
 
-      <View style={{ flexDirection: "row", marginTop: 16 }}>
+      <View style={{ flexDirection: "row", alignItems: "center", marginTop: 22 }}>
         <SoftButton
           label="My activity"
           icon="bell-outline"
@@ -435,7 +435,7 @@ function DoneStep({ c, done, navigation }) {
         />
         <GradButton
           label="Back campaign"
-          style={{ flex: 1.2, height: 55 }}
+          style={{ flex: 2, height: 55 }}
           onPress={() => navigation.goBack()}
         />
       </View>

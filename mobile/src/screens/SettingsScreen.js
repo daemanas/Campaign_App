@@ -1,7 +1,7 @@
 // Settings: account details, the switches that actually change behaviour,
 // local data stats, and the demo-data reset. Nothing here talks to a server.
 import React, { useState } from "react";
-import { Alert, ScrollView, StyleSheet, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, View, Pressable } from "react-native";
 import { useApp } from "../store/AppStore";
 import { useGate } from "../navigation/gate";
 import { C } from "../theme/theme";
@@ -298,13 +298,18 @@ export default function SettingsScreen({ navigation }) {
                 </View>
               ) : null}
               <View style={{ marginTop: 10 }}>
-                <GradButton
-                  label="Update password"
-                  icon="shield-key-outline"
-                  style={{ paddingVertical: 1 }}
-                  textStyle={{ fontSize: 13 }}
+                <Pressable
                   onPress={changePassword}
-                />
+                  style={({ pressed }) => [
+                    styles.customBtn,
+                    { opacity: pressed ? 0.8 : 1 },
+                  ]}
+                >
+                  <Icon name="shield-key-outline" size={16} color="#fff" />
+                  <T w={700} s={13} color="#fff" style={{ marginLeft: 6 }}>
+                    Update password
+                  </T>
+                </Pressable>
               </View>
               <T
                 w={400}
@@ -444,7 +449,6 @@ const styles = StyleSheet.create({
     marginTop: 18,
     marginBottom: 8,
     marginLeft: 4,
-
   },
   cardCompact: { padding: 14 },
   btnSmall: { flexGrow: 1, paddingVertical: 8 },
@@ -464,6 +468,14 @@ const styles = StyleSheet.create({
     height: 32,
     borderRadius: 10,
     backgroundColor: C.purpleSoft,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  customBtn: {
+    backgroundColor: "#7d41e6", // আপনার অ্যাপের মূল পার্পল কালার কোড এখানে বসাতে পারেন
+    borderRadius: 12,
+    paddingVertical: 14,
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
